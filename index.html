@@ -22,15 +22,19 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #f9f9f9;
       color: #333;
-      padding-top: 140px; 
+      padding-top: 140px; /* Add padding equal to the header height */
     }
 
     .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      padding: 0 1rem;
+      position: relative;
+    }
+
+    .right-logo {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      max-width: 220px;
+      height: auto;
     }
 
     .company-title {
@@ -57,8 +61,39 @@
       }
 
       .logo {
-        width: 100px;
+        width: 80px;
       }
+
+      .dropdown-menu {
+        position: static;
+        width: 100%;
+        background-color: #5c2a6e;
+      }
+
+      .nested-menu {
+        position: static;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: none;
+        padding: 1rem;
+        margin-top: 0.5rem;
+      }
+
+      nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav ul li {
+        margin: 0.25rem 0.5rem;
+      }
+
+      .footer-container {
+        padding-right: 1rem;
+        font-size: 0.85rem;
+      }
+
     }
 
     nav ul {
@@ -85,6 +120,7 @@
       color: #d1a7e6;
     }
 
+    /* Main Dropdown */
     .dropdown-header {
       position: relative;
     }
@@ -101,7 +137,7 @@
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: #5c2a6e;
+      background-color: #74378a;
       padding: 0;
       margin: 0;
       list-style: none;
@@ -203,7 +239,7 @@
     }
 
     .hero {
-      background: url("hshake.png") no-repeat left center;
+      background: url("assets/hshake.png") no-repeat left center;
       background-size: cover;
       padding: 10rem 1rem;
       text-align: center;
@@ -227,7 +263,7 @@
     }
 
     .service-item {
-      margin-bottom: 1.5rem; 
+      margin-bottom: 1.5rem; /* Space between service dropdowns */
       border-radius: 10px;
       background-color: #ffffff;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft shadow like Why Us */
@@ -328,17 +364,34 @@
     }
 
     .footer-container {
+      position: relative;
+      background-color: #683479;
+      color: #fff;
+      padding: 1rem;
+      padding-right: 140px; /* Reserve space for logo */
+      text-align: center;
+      box-sizing: border-box;
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
+      min-height: 60px;
+      flex-wrap: wrap;
+    }
+
+    .footer-text {
+      flex: 1 1 auto;
+      max-width: 100%;
     }
 
     .footer-logo {
       position: absolute;
       right: 1rem;
-      height: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 40px;
+      width: auto;
     }
+
 
     input[type="file"] {
       margin-top: 0.5rem;
@@ -350,13 +403,107 @@
       display: block;
       margin-top: 0.25rem;
     }
+
+    @media (max-width: 768px) {
+      .logo,
+      .right-logo {
+        max-width: 80px;
+      }
+
+      .company-title {
+        font-size: 1.2rem;
+        text-align: center;
+        width: 100%;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul li {
+        margin: 0.5rem 0;
+      }
+
+      .hero {
+        padding: 6rem 1rem;
+        background-position: center;
+      }
+
+      .dropdown-menu {
+        position: static;
+        width: 100%;
+        background-color: #5c2a6e;
+        border-radius: 6px;
+        margin-top: 0.5rem;
+      }
+
+      .nested-dropdown {
+        position: relative;
+      }
+
+      .nested-menu {
+        position: static !important;
+        display: none;
+        max-width: 90%;
+        margin: 0.5rem auto;
+        background-color: #ffffff;
+        padding: 1rem;
+        border-radius: 6px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 1;
+      }
+
+      .nested-dropdown:hover .nested-menu {
+        display: block;
+      }
+
+      .nested-dropdown > a::after {
+        content: '▼';
+        float: right;
+        margin-left: 5px;
+        font-size: 0.8em;
+      }
+
+      .footer-logo {
+        height: 30px;
+      }
+
+      .footer-container {
+        padding-right: 80px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding-top: 160px; /* accommodate header space */
+      }
+
+      .hero {
+        padding: 5rem 1rem;
+      }
+
+      .footer-logo {
+        right: 0.5rem;
+        height: 25px;
+      }
+
+      .footer-container {
+        padding-right: 60px;
+      }
+
+      .dropdown-btn {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="container header-container">
       <h1 class="company-title"><strong> HR Solution & Consultancy</strong></h1>
-      <img src="logosmallpurple.png" alt="Company Logo" class="logo right-logo" />
+      <img src="assets/logosmallpurple.png" alt="Company Logo" class="logo right-logo" />
     </div>
 
     <nav>
@@ -413,7 +560,7 @@
         </li>
         <li><a href="#why">Why Us</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="Absolute Profile.pdf" download>Download Profile</a></li>
+        <li><a href="assets/Absolute Profile.pdf" download>Download Profile</a></li>
       </ul>
     </nav>
   </header>
@@ -569,8 +716,9 @@
 
   <footer>
     <div class="footer-container">
-      <p>&copy; 2017 Absolute HR Solution & Consultancy. All Rights Reserved.</p>
-      <img src="logosmallpurple.png" alt="Company Logo" class="footer-logo" />
+      <div class="footer-text">
+        <p>&copy; 2025 Absolute HR Solution & Consultancy. All Rights Reserved.</p>
+      </div>
     </div>
   </footer>
 
@@ -594,6 +742,7 @@
     });
   });
 </script>
+
 <script>
   document.querySelectorAll(".why-list li").forEach(function (item) {
     item.addEventListener("click", function () {
